@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2015 at 07:50 PM
+-- Generation Time: Jul 27, 2015 at 05:10 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `newhigisdb`
+-- Database: `higis_db`
 --
 
 -- --------------------------------------------------------
@@ -29,21 +29,26 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `area` (
   `area_id` int(11) NOT NULL,
   `name_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `area`
 --
 
 INSERT INTO `area` (`area_id`, `name_id`) VALUES
-(1, 1),
-(5, 1),
-(6, 1),
-(7, 1),
-(2, 2),
-(8, 2),
+(2, 1),
+(12, 1),
+(1, 2),
 (3, 3),
-(4, 4);
+(4, 4),
+(5, 4),
+(11, 5),
+(7, 6),
+(8, 6),
+(9, 6),
+(10, 6),
+(6, 7),
+(13, 8);
 
 -- --------------------------------------------------------
 
@@ -52,19 +57,22 @@ INSERT INTO `area` (`area_id`, `name_id`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `change` (
-  `change_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+  `change_id` int(11) NOT NULL,
+  `event_id` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `change`
 --
 
-INSERT INTO `change` (`change_id`) VALUES
-(1),
-(2),
-(3),
-(4),
-(5);
+INSERT INTO `change` (`change_id`, `event_id`) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7);
 
 -- --------------------------------------------------------
 
@@ -78,7 +86,24 @@ CREATE TABLE IF NOT EXISTS `change_on_area` (
   `old_area_id` int(11) NOT NULL,
   `new_area_id` int(11) NOT NULL,
   `descendent` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `change_on_area`
+--
+
+INSERT INTO `change_on_area` (`change_on_area_id`, `change_id`, `old_area_id`, `new_area_id`, `descendent`) VALUES
+(1, 1, 2, 7, 1),
+(2, 2, 7, 8, 1),
+(3, 3, 8, 9, 1),
+(4, 4, 9, 10, 1),
+(5, 5, 1, 11, 1),
+(6, 6, 4, 5, 1),
+(7, 6, 4, 6, 1),
+(8, 2, 3, 8, 1),
+(9, 3, 8, 13, 1),
+(10, 4, 9, 3, 1),
+(11, 5, 13, 11, 1);
 
 -- --------------------------------------------------------
 
@@ -90,18 +115,20 @@ CREATE TABLE IF NOT EXISTS `event` (
   `event_id` int(11) NOT NULL,
   `date` date NOT NULL,
   `event_name` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `event`
 --
 
 INSERT INTO `event` (`event_id`, `date`, `event_name`) VALUES
-(1, '1933-01-30', ''),
-(2, '1939-09-01', ''),
-(3, '1945-04-08', ''),
-(4, '1945-04-08', ''),
-(5, '1945-04-30', '');
+(1, '1933-01-30', 'From A to A2'),
+(2, '1939-09-01', 'Annexation of C by A2'),
+(3, '1945-04-08', 'A2 looses F'),
+(4, '1945-04-08', 'C freed'),
+(5, '1945-04-30', 'B unites with F and becomes B2'),
+(6, '1419-01-01', 'E independent from D'),
+(7, '1945-04-30', 'From A2 to A');
 
 -- --------------------------------------------------------
 
@@ -113,20 +140,21 @@ CREATE TABLE IF NOT EXISTS `name` (
   `name_id` int(11) NOT NULL,
   `off_name_en` text NOT NULL,
   `short_name_en` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `name`
 --
 
 INSERT INTO `name` (`name_id`, `off_name_en`, `short_name_en`) VALUES
-(1, 'Federal Republic of Germany', 'Germany'),
-(2, 'Kingdom of Belgium', 'Belgium'),
-(3, 'French Republic', 'France'),
-(4, 'Republic of Poland', 'Poland'),
-(5, 'Republic of Belgium', 'Belgium'),
-(6, '3rd German Empire', 'Germany'),
-(7, 'Principauté de Monaco', 'Monaco');
+(1, 'A', 'A'),
+(2, 'B', 'B'),
+(3, 'C', 'C'),
+(4, 'D', 'D'),
+(5, 'B2', 'B2'),
+(6, 'A2', 'A2'),
+(7, 'E', 'E'),
+(8, 'F', 'F');
 
 -- --------------------------------------------------------
 
@@ -138,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `point` (
   `point_id` int(11) NOT NULL,
   `lat` float NOT NULL,
   `lng` float NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `point`
@@ -171,8 +199,7 @@ INSERT INTO `point` (`point_id`, `lat`, `lng`) VALUES
 (24, 7.18387, -26.7685),
 (25, 5.88876, -35.9339),
 (26, -33.6199, -42.0219),
-(27, -39.1989, -42.9185),
-(28, -20.3947, -17.2201);
+(27, -39.1989, -42.9185);
 
 -- --------------------------------------------------------
 
@@ -183,66 +210,66 @@ INSERT INTO `point` (`point_id`, `lat`, `lng`) VALUES
 CREATE TABLE IF NOT EXISTS `point_on_polyline` (
   `point_on_polyline_id` int(11) NOT NULL,
   `polyline_id` int(11) NOT NULL,
-  `point_id` int(11) NOT NULL
+  `point_id` int(11) NOT NULL,
+  `point_index` int(10) unsigned NOT NULL COMMENT 'For ordering purposes'
 ) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `point_on_polyline`
 --
 
-INSERT INTO `point_on_polyline` (`point_on_polyline_id`, `polyline_id`, `point_id`) VALUES
-(1, 1, 3),
-(2, 1, 4),
-(3, 1, 23),
-(4, 1, 24),
-(5, 1, 7),
-(6, 2, 1),
-(7, 2, 14),
-(8, 2, 13),
-(9, 3, 3),
-(10, 3, 19),
-(11, 3, 15),
-(12, 4, 7),
-(13, 4, 22),
-(14, 5, 7),
-(15, 5, 25),
-(16, 5, 11),
-(17, 5, 16),
-(18, 6, 16),
-(19, 6, 10),
-(20, 6, 9),
-(21, 6, 20),
-(22, 6, 8),
-(23, 6, 17),
-(24, 6, 18),
-(25, 6, 13),
-(26, 7, 1),
-(27, 7, 28),
-(28, 7, 15),
-(29, 8, 22),
-(30, 8, 6),
-(31, 8, 16),
-(32, 9, 1),
-(33, 9, 2),
-(34, 9, 3),
-(35, 10, 12),
-(36, 10, 26),
-(37, 10, 27),
-(38, 11, 22),
-(39, 11, 5),
-(40, 11, 21),
-(41, 11, 15),
-(42, 12, 22),
-(43, 12, 8),
-(44, 13, 8),
-(45, 13, 17),
-(46, 13, 18),
-(47, 13, 13),
-(48, 14, 8),
-(49, 14, 20),
-(50, 14, 9),
-(51, 14, 10),
-(52, 14, 16);
+INSERT INTO `point_on_polyline` (`point_on_polyline_id`, `polyline_id`, `point_id`, `point_index`) VALUES
+(1, 1, 3, 1),
+(2, 1, 4, 2),
+(3, 1, 23, 3),
+(4, 1, 24, 4),
+(5, 1, 7, 5),
+(6, 2, 1, 3),
+(7, 2, 14, 2),
+(8, 2, 13, 1),
+(9, 3, 3, 1),
+(10, 3, 19, 2),
+(11, 3, 15, 3),
+(12, 4, 7, 1),
+(13, 4, 22, 2),
+(14, 5, 7, 1),
+(15, 5, 25, 2),
+(16, 5, 11, 3),
+(17, 5, 16, 4),
+(18, 6, 16, 1),
+(19, 6, 10, 2),
+(20, 6, 9, 3),
+(21, 6, 20, 4),
+(22, 6, 8, 5),
+(23, 6, 17, 6),
+(24, 6, 18, 7),
+(25, 6, 13, 8),
+(26, 7, 1, 1),
+(28, 7, 15, 3),
+(29, 8, 22, 3),
+(30, 8, 6, 2),
+(31, 8, 16, 1),
+(32, 9, 1, 1),
+(33, 9, 2, 2),
+(34, 9, 3, 3),
+(35, 10, 12, 1),
+(36, 10, 26, 2),
+(37, 10, 27, 3),
+(38, 11, 22, 1),
+(39, 11, 5, 2),
+(40, 11, 21, 3),
+(41, 11, 15, 4),
+(42, 12, 22, 1),
+(43, 12, 8, 2),
+(44, 13, 8, 1),
+(45, 13, 17, 2),
+(46, 13, 18, 3),
+(47, 13, 13, 4),
+(48, 14, 8, 5),
+(49, 14, 20, 4),
+(50, 14, 9, 3),
+(51, 14, 10, 2),
+(52, 14, 16, 1);
 
 -- --------------------------------------------------------
 
@@ -277,7 +304,7 @@ CREATE TABLE IF NOT EXISTS `polygon_in_area` (
   `polygon_in_area_id` int(11) NOT NULL,
   `area_id` int(11) NOT NULL,
   `polygon_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `polygon_in_area`
@@ -285,18 +312,23 @@ CREATE TABLE IF NOT EXISTS `polygon_in_area` (
 
 INSERT INTO `polygon_in_area` (`polygon_in_area_id`, `area_id`, `polygon_id`) VALUES
 (1, 1, 1),
-(2, 1, 5),
-(3, 2, 2),
+(2, 2, 2),
+(3, 2, 5),
 (4, 3, 3),
 (5, 4, 4),
-(6, 5, 1),
-(7, 5, 5),
-(8, 5, 4),
-(9, 6, 1),
-(10, 6, 4),
-(11, 7, 1),
-(12, 8, 2),
-(13, 8, 5);
+(6, 7, 2),
+(7, 6, 7),
+(8, 5, 6),
+(9, 7, 5),
+(10, 8, 2),
+(11, 8, 3),
+(12, 8, 5),
+(13, 9, 2),
+(14, 9, 3),
+(15, 10, 2),
+(16, 11, 1),
+(17, 11, 5),
+(18, 12, 2);
 
 -- --------------------------------------------------------
 
@@ -337,37 +369,39 @@ INSERT INTO `polyline` (`polyline_id`) VALUES
 CREATE TABLE IF NOT EXISTS `polyline_on_polygon` (
   `polyline_on_polygon_id` int(11) NOT NULL,
   `polygon_id` int(11) NOT NULL,
-  `polyline_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+  `polyline_id` int(11) NOT NULL,
+  `polyline_index` int(11) NOT NULL COMMENT 'Ordering purposes'
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `polyline_on_polygon`
 --
 
-INSERT INTO `polyline_on_polygon` (`polyline_on_polygon_id`, `polygon_id`, `polyline_id`) VALUES
-(1, 1, 7),
-(2, 1, 9),
-(3, 1, 3),
-(4, 2, 3),
-(5, 2, 1),
-(6, 2, 4),
-(7, 2, 11),
-(8, 3, 5),
-(9, 3, 8),
-(10, 3, 4),
-(11, 4, 6),
-(12, 4, 2),
-(13, 4, 7),
-(14, 4, 11),
-(15, 4, 8),
-(16, 5, 10),
-(17, 6, 2),
-(18, 6, 13),
-(19, 6, 12),
-(20, 6, 11),
-(21, 7, 12),
-(22, 7, 14),
-(23, 7, 8);
+INSERT INTO `polyline_on_polygon` (`polyline_on_polygon_id`, `polygon_id`, `polyline_id`, `polyline_index`) VALUES
+(1, 1, 7, 3),
+(2, 1, 9, 1),
+(3, 1, 3, 2),
+(4, 2, 3, 4),
+(5, 2, 1, 1),
+(6, 2, 4, 2),
+(7, 2, 11, 3),
+(8, 3, 5, 1),
+(9, 3, 8, 2),
+(10, 3, 4, 3),
+(11, 4, 6, 1),
+(12, 4, 2, 2),
+(13, 4, 7, 3),
+(14, 4, 11, 4),
+(15, 4, 8, 5),
+(16, 5, 10, 1),
+(17, 6, 2, 5),
+(18, 6, 13, 4),
+(19, 6, 12, 3),
+(20, 6, 11, 2),
+(21, 7, 12, 1),
+(22, 7, 14, 3),
+(23, 7, 8, 2),
+(24, 6, 7, 1);
 
 --
 -- Indexes for dumped tables
@@ -383,7 +417,7 @@ ALTER TABLE `area`
 -- Indexes for table `change`
 --
 ALTER TABLE `change`
-  ADD PRIMARY KEY (`change_id`);
+  ADD PRIMARY KEY (`change_id`), ADD KEY `event_id` (`event_id`);
 
 --
 -- Indexes for table `change_on_area`
@@ -447,32 +481,32 @@ ALTER TABLE `polyline_on_polygon`
 -- AUTO_INCREMENT for table `area`
 --
 ALTER TABLE `area`
-  MODIFY `area_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `area_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `change`
 --
 ALTER TABLE `change`
-  MODIFY `change_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `change_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `change_on_area`
 --
 ALTER TABLE `change_on_area`
-  MODIFY `change_on_area_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `change_on_area_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `name`
 --
 ALTER TABLE `name`
-  MODIFY `name_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `name_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `point`
 --
 ALTER TABLE `point`
-  MODIFY `point_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
+  MODIFY `point_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `point_on_polyline`
 --
@@ -487,7 +521,7 @@ ALTER TABLE `polygon`
 -- AUTO_INCREMENT for table `polygon_in_area`
 --
 ALTER TABLE `polygon_in_area`
-  MODIFY `polygon_in_area_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+  MODIFY `polygon_in_area_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `polyline`
 --
@@ -497,7 +531,7 @@ ALTER TABLE `polyline`
 -- AUTO_INCREMENT for table `polyline_on_polygon`
 --
 ALTER TABLE `polyline_on_polygon`
-  MODIFY `polyline_on_polygon_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
+  MODIFY `polyline_on_polygon_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 --
 -- Constraints for dumped tables
 --
@@ -507,6 +541,12 @@ ALTER TABLE `polyline_on_polygon`
 --
 ALTER TABLE `area`
 ADD CONSTRAINT `area_ibfk_1` FOREIGN KEY (`name_id`) REFERENCES `name` (`name_id`);
+
+--
+-- Constraints for table `change`
+--
+ALTER TABLE `change`
+ADD CONSTRAINT `change_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `event` (`event_id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `change_on_area`
@@ -520,8 +560,8 @@ ADD CONSTRAINT `change_on_area_ibfk_3` FOREIGN KEY (`new_area_id`) REFERENCES `a
 -- Constraints for table `point_on_polyline`
 --
 ALTER TABLE `point_on_polyline`
-ADD CONSTRAINT `point_on_polyline_ibfk_1` FOREIGN KEY (`point_id`) REFERENCES `point` (`point_id`) ON UPDATE CASCADE,
-ADD CONSTRAINT `point_on_polyline_ibfk_2` FOREIGN KEY (`polyline_id`) REFERENCES `polyline` (`polyline_id`);
+ADD CONSTRAINT `point_on_polyline_ibfk_1` FOREIGN KEY (`point_id`) REFERENCES `point` (`point_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `point_on_polyline_ibfk_2` FOREIGN KEY (`polyline_id`) REFERENCES `polyline` (`polyline_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `polygon_in_area`
