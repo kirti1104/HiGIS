@@ -1,0 +1,47 @@
+
+ppg_geo = []
+ppgs = get_polypolygons(ctr_name)
+FOR EACH ppg IN ppgs
+
+	pg_geo = []
+	pgs = get_polygons(ppg)
+	FOR EACH pg IN pgs
+
+		pl_geo = []
+		pls = get_polylines(pg)
+		FOR EACH pl IN pls
+
+			pt_geo = []
+			pts = get_points(pl)
+			FOR EACH pt IN pts
+
+				pt_geo.append(get_coords(pt))
+
+			pl_geo.append(pt_geo)
+
+
+		// stich polylines together
+
+		pg_geo.append(pl_geo)
+
+	ppg_geo.append(pg_geo)
+
+	print ppg_geo
+
+-----------------------------------
+	areas = {}
+	areas['type'] = 'FeatureCollection'
+	areas['features'] = []
+
+	area = {}
+	area['type'] = 'Feature'
+
+	area['properties'] = {}
+	area['properties']['name']       = // read the name from DB
+	# actual geometry
+	area['geometry'] = {}
+	area['geometry']['type']         = 'MultiPolygon'
+	area['geometry']['coordinates']  = ppg_geo
+
+
+	json.encode(areas -> "areaX.geojson")
