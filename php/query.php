@@ -1,6 +1,4 @@
 <?php
-  echo "Horst <br/>";
-
   //Connection creds
   $servername = "localhost";
   $username   = "root";
