@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <title>HiGIS Project</title>
+	<style>
+	#thediv {
+    margin:0 auto;
+	height:829px;
+	width:1710px;
+	overflow:hidden;
+
+	}
+	img {
+    position: relative;
+    left: 50%;
+    top: 50%;
+}
+	</style>
+  </head>
+  <body>
+  <div align=center>
+  <font size="15" color="green" face="Arial">HiGIS</font>
+  </div>
+  <br>
+  
+ <div id="thediv">
+   <img id="pic" src="graphics/main_map.jpg" />
+   </div>
+   
+ <div id="zoomin">
+   <input type="image" src="graphics/button_plus.png" style="position:absolute;left:130px;top:630px;" onclick="zoom(1.1)"/>
+   </div>
+   <div id="zoomout">
+   <input type="image" src="graphics/button_minus.png" style="position:absolute;left:130px;top:680px;" onclick="zoom(0.9)"/>
+   </div>
+   <div>
+   <input type="image" src="graphics/button_edit.png" style="position:absolute;left:130px;top:730px;" onclick=ImageChange(this, "button home.png") />
+   <input type="image" src="graphics/button_setting.png" style="position:absolute;left:130px;top:780px;"  />
+   <input type="image" src="graphics/button_help.png" style="position:absolute;left:130px;top:830px;" />
+  </div>
+
+  <script>
+   window.onload = function(){zoom(1)}
+	function zoom(zm) {
+	img=document.getElementById("pic")
+	wid=img.width
+	ht=img.height
+	img.style.width=(wid*zm)+"px"
+	img.style.height=(ht*zm)+"px"
+	img.style.marginLeft = -(img.width/2) + "px";
+	img.style.marginTop = -(img.height/2) + "px";
+	}
+
+   </script>
+  
+ <!-- <div align=center>
+<img src="graphics/timeline.png" />
+  </div>-->
+ 
+  
+  </body>
+</html>
