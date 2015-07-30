@@ -1,30 +1,21 @@
 <html>
   <head>
     <title>HiGIS Project</title>
-	<style>
-	#thediv {
-    margin:0 auto;
-	height:829px;
-	width:1710px;
-	overflow:hidden;
-
-	}
-	img {
-    position: relative;
-    left: 50%;
-    top: 50%;
-}
-	</style>
+	<link rel="stylesheet" href="style/leaflet.css" />
+	<link rel="stylesheet" href="style/main.css" />
   </head>
   <body>
-  <div align=center>
-  <font size="15" color="green" face="Arial">HiGIS</font>
+  <div style="text-align: center">
+	<font size="15" color="green" face="Arial">HiGIS</font>
   </div>
   <br>
   
- <div id="thediv">
+  <div id="map"></div>
+ 
+<!--
+<div id="thediv">
    <img id="pic" src="graphics/main_map.jpg" />
-   </div>
+</div>
    
  <div id="zoomin">
    <input type="image" src="graphics/button_plus.png" style="position:absolute;left:130px;top:630px;" onclick="zoom(1.1)"/>
@@ -37,25 +28,9 @@
    <input type="image" src="graphics/button_setting.png" style="position:absolute;left:130px;top:780px;"  />
    <input type="image" src="graphics/button_help.png" style="position:absolute;left:130px;top:830px;" />
   </div>
+-->
 
-  <script>
-   window.onload = function(){zoom(1)}
-	function zoom(zm) {
-	img=document.getElementById("pic")
-	wid=img.width
-	ht=img.height
-	img.style.width=(wid*zm)+"px"
-	img.style.height=(ht*zm)+"px"
-	img.style.marginLeft = -(img.width/2) + "px";
-	img.style.marginTop = -(img.height/2) + "px";
-	}
-
-   </script>
-  
- <!-- <div align=center>
-<img src="graphics/timeline.png" />
-  </div>-->
- 
-  
+	<script src="script/third-party/leaflet.js"></script>
+	<script src="script/main.js"></script>
   </body>
 </html>

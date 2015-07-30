@@ -1,0 +1,15 @@
+#map {
+	height: 100%;
+}
+
+#thediv {
+	margin:0 auto;
+	height:829px;
+	width:1710px;
+	overflow:hidden;
+}
+img {
+	position: relative;
+	left: 50%;
+	top: 50%;
+}
