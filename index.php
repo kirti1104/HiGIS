@@ -17,10 +17,6 @@
 	  <div id="tlMain"></div>
 	</div>
  
-
-<div id="thediv">
-   <img id="pic" src="graphics/main_map.jpg" />
-</div>
    <!--
  <div id="zoomin">
    <input type="image" src="graphics/button_plus.png" style="position:absolute;left:130px;top:630px;" onclick="zoom(1.1)"/>
