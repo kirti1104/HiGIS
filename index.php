@@ -17,29 +17,19 @@
 	  <div id="tlMain"></div>
 	</div>
  
-<!--
-<div id="thediv">
-   <img id="pic" src="graphics/main_map.jpg" />
-</div>
-   
- <div id="zoomin">
-   <input type="image" src="graphics/button_plus.png" style="position:absolute;left:130px;top:630px;" onclick="zoom(1.1)"/>
-   </div>
-   <div id="zoomout">
-   <input type="image" src="graphics/button_minus.png" style="position:absolute;left:130px;top:680px;" onclick="zoom(0.9)"/>
-   </div>
-   <div>
-   <input type="image" src="graphics/button_edit.png" style="position:absolute;left:130px;top:730px;" onclick=ImageChange(this, "button home.png") />
-   <input type="image" src="graphics/button_setting.png" style="position:absolute;left:130px;top:780px;"  />
-   <input type="image" src="graphics/button_help.png" style="position:absolute;left:130px;top:830px;" />
-  </div>
--->
+	<div id="zoom">
+	   <input type="image" src="graphics/button_plus.png" />
+	   <input type="image" src="graphics/button_minus.png" />
+	   <input type="image" src="graphics/button_edit.png" onclick=ImageChange(this, "button home.png") />
+	   <input type="image" src="graphics/button_setting.png"   />
+	   <input type="image" src="graphics/button_help.png"  />
+	</div>
+
 
 	<script src="script/third-party/leaflet.js"></script>
 	<script src="script/third-party/jquery-1.11.3.min.js"></script>	
 	<script src="script/Model.js"></script>
 	<script src="script/Timeline.js"></script>
-	<script src="script/Timeline.js"></script>		
 	<script src="script/Controller.js"></script>	
 	<script src="script/main.js"></script>
   </body>

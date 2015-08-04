@@ -1,5 +1,5 @@
 #map {
-	height: 100%;
+	height: 80%;
 }
 
 #timeline {
@@ -8,14 +8,9 @@
   height: 120px;
 }
 
-#thediv {
-	margin:0 auto;
-	height:829px;
-	width:1710px;
-	overflow:hidden;
+#zoom{
+	position: absolute;
+	left:100px;
+	top:630px;
 }
-img {
-	position: relative;
-	left: 50%;
-	top: 50%;
-}
+
