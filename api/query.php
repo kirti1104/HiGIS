@@ -3,7 +3,7 @@
   $servername = "localhost";
   $username   = "root";
   $password   = "";
-  $dbname     = "newhigisdb";
+  $dbname     = "higis_db";
 
   // Create connection
   $conn = new mysqli($servername, $username, $password, $dbname);
@@ -65,11 +65,11 @@
     $polyline_result = $conn->query($polyline_query);
 
     array_push($polygons, $polygon_row["polygon_id"]);
-  } // end while
-
     echo ("<pre>");
       print_r($polygons);
     echo ("</pre>");
+  } // end while
+
 
 
     // FOR EACH POLYLINE IN POLYGON
