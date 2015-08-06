@@ -24,34 +24,7 @@
    <input type="image" src="graphics/button_help.png" style="position:absolute;left:10px;top:350px;" />
    </div>
    
-  <!-- <form name="htmlform" method="post" action="html_form_send.php">
-<table width="450px">
-</tr>
-<tr>
- <td valign="center" >
-  <label for="event_creation">Event Creation </label>
- </td>
- </tr>
- 
- <tr>
- <td valign="top">
- <label for="Name_of_event">Name of Event </label>
- <input type="text">
- </td>
- <tr>
- 
-<tr>
- <td valign="top"">
-  <label for="date_of_event">Date of Event *</label>
-   <input type="date">
-   </td>
-   </tr>
- 
-</table>
-</form>
--->
-
-<fieldset>
+ <fieldset>
   <legend>Event Creation</legend>
   <ol>
   
