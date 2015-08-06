@@ -1,16 +1,16 @@
 <html>
   <head>
-    <title>HiGIS Project</title>
+   <!-- <title>HiGIS Project</title> -->
 	<link rel="stylesheet" href="style/leaflet.css" />
 	<link rel="stylesheet" href="style/main.css" />
 	<link rel="stylesheet" href="style/timeline.css" />	
 	<link rel="stylesheet" href="style/edit.css" />	
   </head>
   <body>
-	<div style="text-align: center">
+	<!--<div style="text-align: center">
 		<font size="15" color="green" face="Arial">HiGIS</font>
 	</div>
-  
+    -->
 	<div id="map"></div>
   
 	<!-- TIMELINE -->
