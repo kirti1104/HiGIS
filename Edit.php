@@ -1,15 +1,16 @@
 <html>
   <head>
-    <title>HiGIS Project</title>
+   <!-- <title>HiGIS Project</title> --->
 	<link rel="stylesheet" href="style/leaflet.css" />
 	<link rel="stylesheet" href="style/main.css" />
 	<link rel="stylesheet" href="style/timeline.css" />	
 	<link rel="stylesheet" href="style/Edit.css" />	
   </head>
   <body>
-	<div style="text-align: center">
+<!--	<div style="text-align: center">
 		<font size="15" color="green" face="Arial">HiGIS</font>
 	</div>
+ -->
   
 	<div id="map"></div>
   
@@ -26,18 +27,18 @@
    
  <fieldset>
   <legend>Event Creation</legend>
-  <ol>
-  
+  <br>
+  <!--
       <label for="name">Name of Event<em>*</em></label>
-      <input id="name" /><br>
+	  <input id="name" type ="text"/><br>
     
   
       <label for="date">Date of Event<em>*</em></label>
       <input type="date" /><br>
 	  
 	  <legend> Changes under the event</legend>
-	  </ol>
-  
+	  <br>
+  -->
 </fieldset>
 
 	<script src="script/third-party/leaflet.js"></script>
